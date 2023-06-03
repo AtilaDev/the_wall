@@ -1,4 +1,4 @@
-# the_wall
+# The Wall
 
 Social app.
 
