@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
         'UserEmail': currentUser.email,
         'Message': textController.text,
         'TimeStamp': Timestamp.now(),
+        'Likes': []
       });
     }
 
@@ -76,6 +77,8 @@ class _HomePageState extends State<HomePage> {
                         return WallPost(
                           message: post['Message'],
                           user: post['UserEmail'],
+                          postId: post.id,
+                          likes: List<String>.from(post['Likes'] ?? []),
                         );
                       },
                     );
@@ -119,7 +122,7 @@ class _HomePageState extends State<HomePage> {
             // logged in as
             Text(
               "Logged in as: ${currentUser.email!}",
-              style: TextStyle(color: Colors.grey),
+              style: const TextStyle(color: Colors.grey),
             )
           ],
         ),
