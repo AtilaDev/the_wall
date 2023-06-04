@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:the_wall/components/button.dart';
 import 'package:the_wall/components/text_field.dart';
@@ -14,6 +15,43 @@ class _LoginPageState extends State<LoginPage> {
   // text editing controllers
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+
+  // sign user in
+  void signIn() async {
+    // show loading circle
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
+    // try sign in
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailTextController.text,
+        password: passwordTextController.text,
+      );
+
+      // pop loading circle
+      if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      // pop loading circle
+      Navigator.pop(context);
+      // display error message
+      displayMessage(e.code);
+    }
+  }
+
+  // display a dialog message
+  void displayMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(message),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 25),
 
                 // sign in button
-                MyButton(onTap: () {}, text: 'Sign In'),
+                MyButton(onTap: signIn, text: 'Sign In'),
 
                 const SizedBox(height: 25),
 
