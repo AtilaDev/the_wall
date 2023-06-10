@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:the_wall/components/drawer.dart';
 import 'package:the_wall/components/text_field.dart';
 import 'package:the_wall/components/wall_post.dart';
+import 'package:the_wall/helper/helper_methods.dart';
 import 'package:the_wall/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -60,10 +61,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade300,
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: const Text('The Wall'),
-        backgroundColor: Colors.grey.shade900,
         elevation: 0,
       ),
       drawer: MyDrawer(
@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                           user: post['UserEmail'],
                           postId: post.id,
                           likes: List<String>.from(post['Likes'] ?? []),
+                          time: formatDate(post["TimeStamp"]),
                         );
                       },
                     );

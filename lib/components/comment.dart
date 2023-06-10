@@ -15,20 +15,25 @@ class Comment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey.shade300,
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(4),
       ),
+      margin: const EdgeInsets.only(bottom: 5),
+      padding: const EdgeInsets.all(15),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // comment
           Text(text),
 
+          const SizedBox(height: 5),
+
           // user, time
           Row(
             children: [
-              Text(user),
-              const Text(' • '),
-              Text(time),
+              Text(user, style: TextStyle(color: Colors.grey.shade400)),
+              Text(' • ', style: TextStyle(color: Colors.grey.shade400)),
+              Text(time, style: TextStyle(color: Colors.grey.shade400)),
             ],
           )
         ],
