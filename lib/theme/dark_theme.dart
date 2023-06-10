@@ -8,4 +8,12 @@ ThemeData darkTheme = ThemeData(
     primary: Colors.grey.shade900,
     secondary: Colors.grey.shade800,
   ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: Colors.white,
+    ),
+  ),
+  textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: Colors.white,
+  ),
 );
